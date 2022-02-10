@@ -33,18 +33,18 @@ function App() {
     <div>
       <div className="navbar">Github Repo Search</div>
       <form action="" className="search">
-        <input autoFocus onChange={handleInput} name="search" className="user-input" type="text" placeholder="Search Repos" />
+        <input autoFocus onChange={handleInput} name="search" className="user-input" type="text" placeholder="Enter repository name here..." />
       </form>
-      <ul className="repo-list">
-        {repos.map(repo => {
-          return (
-            <li key={repo.node_id}>
+      {repos.map(repo => {
+        return (
+          <div className="card">
+            <h2>
               <a href={repo.html_url}>{repo.name}</a>
-              <p>{repo.description}</p>
-            </li>
-          )
-        })}
-      </ul>
+            </h2>
+            <p>{repo.description}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }
