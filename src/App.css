@@ -53,8 +53,14 @@
 
 .user-input {
   padding: 10px;
+  border-radius: 10px;
+  border-color: gray;
+  width: 50rem;
 }
 
-.repo-list {
-  text-align: center;
+.card {
+  box-shadow: 0 2px 20px gray;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
