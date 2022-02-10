@@ -20,10 +20,13 @@ function App() {
   }, [userInput])
 
   function handleInput(e) {
+    // delay to prevent consuming rate limit
+
     const inputDelay = setTimeout(() => {
       setUserInput(e.target.value)
+
       return () => clearTimeout(inputDelay)
-    }, 1000)
+    }, 3000)
   }
 
   return (
@@ -32,6 +35,16 @@ function App() {
       <form action="" className="search">
         <input autoFocus onChange={handleInput} name="search" className="user-input" type="text" placeholder="Search Repos" />
       </form>
+      <ul className="repo-list">
+        {repos.map(repo => {
+          return (
+            <li key={repo.node_id}>
+              <a href={repo.html_url}>{repo.name}</a>
+              <p>{repo.description}</p>
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
