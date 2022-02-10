@@ -1,12 +1,27 @@
 import "./App.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
   const [userInput, setUserInput] = useState()
+  const [repos, setRepos] = useState([])
+
+  useEffect(() => {
+    if (!userInput) {
+      return
+    }
+
+    // api call here
+    // https://api.github.com/search/repositories?q=react
+    fetch("https://api.github.com/search/repositories?q=" + userInput)
+      .then(res => res.json())
+      .then(data => {
+        setRepos(data.items)
+      })
+  }, [userInput])
 
   function handleInput(e) {
     const inputDelay = setTimeout(() => {
-      console.log(e.target.value)
+      setUserInput(e.target.value)
       return () => clearTimeout(inputDelay)
     }, 1000)
   }
